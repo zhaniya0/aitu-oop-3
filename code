@@ -1,0 +1,220 @@
+import java.util.Scanner;
+
+public class Main {
+
+    // Problem 1
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
+    public static int findMinimum(int n, int[] arr) {
+        if (n == 0) {
+            return -1;
+        }
+        int minValue = arr[0];
+
+        for (int i = 1; i < n; i++) {
+            if (minValue > arr[i]) {
+                minValue = arr[i];
+            }
+        }
+        return minValue;
+    }
+
+    // Problem 2
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
+    public static double FindAvg(int n2, int[] arr2) {
+        if (n2 == 0) {
+            return -1;
+        }
+        int summation = 0;
+        for (int i = 0; i < n2; i++) {
+            summation += arr2[i];
+        }
+        double avg = (double) summation / n2;
+        return avg;
+    }
+
+    // Problem 3
+    // Time Complexity: O(sqrt(a))
+    // Space Complexity: O(1)
+    public static String checkPrimeorComposite(int a) {
+        if (a <= 1) {
+            return "prime";
+        }
+        for (int i = 2; i <= Math.sqrt(a); i++) {
+            if (a % i == 0) {
+                return "composite";
+            }
+        }
+        return "prime";
+    }
+
+    // Problem 4
+    // Time Complexity: O(f)
+    // Space Complexity: O(1)
+    public static int facrotial(int f) {
+        if (f == 0) {
+            return 1;
+        }
+        int factorialof = 1;
+        for (int i = 1; i <= f; i++) {
+            factorialof *= i;
+        }
+        return factorialof;
+    }
+
+    // Problem 5
+    // Time Complexity: O(2^n)
+    // Space Complexity: O(n)
+    public static int fibonacci(int n) {
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);
+        }
+    }
+
+    // Problem 6
+    // Time Complexity: O(1)
+    // Space Complexity: O(1)
+    public static int power2(int p, int w) {
+        int powerof = (int) Math.pow(p, w);
+        return powerof;
+    }
+
+    // Problem 7
+    // Time Complexity: O(n!)
+    // Space Complexity: O(n)
+    public static void printPermutations(String str, String result) {
+        if (str.length() == 0) {
+            System.out.println(result);
+            return;
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            char currentChar = str.charAt(i);
+            String remaining = str.substring(0, i) + str.substring(i + 1);
+            printPermutations(remaining, result + currentChar);
+        }
+    }
+
+    // Problem 8
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
+    public static boolean isAllDigits(String s) {
+        if (s == null || s.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (!Character.isDigit(s.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Problem 9
+    // Time Complexity: O(n * k)
+    // Space Complexity: O(n * k)
+    public static int binomialCoefficient(int n, int k) {
+        if (k == 0 || k == n) {
+            return 1;
+        }
+        return binomialCoefficient(n - 1, k - 1) + binomialCoefficient(n - 1, k);
+    }
+
+    // Problem 10
+    // Time Complexity: O(log(min(a, b)))
+    // Space Complexity: O(1)
+    public static int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Problem 1
+        System.out.print("Problem 1) Enter the number of elements: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        System.out.println("Problem 1) Min value: " + findMinimum(n, arr));
+
+        // Problem 2
+        System.out.print("Problem 2) Enter the number of elements: ");
+        int n2 = scanner.nextInt();
+        int[] arr2 = new int[n2];
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n2; i++) {
+            arr2[i] = scanner.nextInt();
+        }
+        System.out.println("Problem 2) Average: " + FindAvg(n2, arr2));
+
+        // Problem 3
+        System.out.print("Problem 3) Enter a number to check if it's prime or composite: ");
+        int num = scanner.nextInt();
+        String result = checkPrimeorComposite(num);
+        System.out.println("Problem 3) The number " + num + " is " + result);
+
+        // Problem 4
+        System.out.print("Problem 4) Enter a number to calculate its factorial: ");
+        int f = scanner.nextInt();
+        System.out.println("Problem 4) Factorial of " + f + " is: " + facrotial(f));
+
+        // Problem 5
+        System.out.print("Problem 5) Enter the position (n) to find the Fibonacci number: ");
+        int nFibonacci = scanner.nextInt();
+        System.out.println("Problem 5) The Fibonacci number at position " + nFibonacci + " is: " + fibonacci(nFibonacci));
+
+        // Problem 6
+        System.out.print("Problem 6) Enter the base (p): ");
+        int p = scanner.nextInt();
+        System.out.print("Enter the exponent (w): ");
+        int w = scanner.nextInt();
+        System.out.println("Problem 6) " + p + " raised to the power of " + w + " is: " + power2(p, w));
+
+        // Problem 7
+        System.out.print("Problem 7) Enter a string to find its permutations: ");
+        scanner.nextLine();  // Consume newline character from previous input
+        String inputStr = scanner.nextLine();
+        System.out.println("Problem 7) Permutations of the string: ");
+        printPermutations(inputStr, "");
+
+        // Problem 8
+        System.out.print("Problem 8) Enter a string to check if it consists only of digits: ");
+        String inputString = scanner.nextLine();
+        if (isAllDigits(inputString)) {
+            System.out.println("The string consists only of digits.");
+        } else {
+            System.out.println("The string contains non-digit characters.");
+        }
+
+        // Problem 9
+        System.out.print("Problem 9) Enter value for n: ");
+        int nBinomial = scanner.nextInt();
+        System.out.print("Enter value for k: ");
+        int kBinomial = scanner.nextInt();
+        int resultBinomial = binomialCoefficient(nBinomial, kBinomial);
+        System.out.println("Problem 9) The binomial coefficient C(" + nBinomial + ", " + kBinomial + ") is: " + resultBinomial);
+
+        // Problem 10
+        System.out.print("Problem 10) Enter value for a: ");
+        int a = scanner.nextInt();
+        System.out.print("Enter value for b: ");
+        int b = scanner.nextInt();
+        int resultGCD = gcd(a, b);
+        System.out.println("Problem 10) The GCD of " + a + " and " + b + " is: " + resultGCD);
+
+
+        scanner.close();
+    }
+}
+
